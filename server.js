@@ -3,7 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import { config } from './src/config/config.js';
 import ConnectDataBase from './src/db/connection.js';
-
+import productRoutes from './src/routes/product.routes.js';
 
 
 class Server {
@@ -12,6 +12,7 @@ class Server {
         this.port = config.PORT;
         this.connectDataBase = new ConnectDataBase();
         this.middlewares();
+        this.routes();
     };
 
     async connectDB() {
@@ -24,7 +25,9 @@ class Server {
         this.app.use(morgan('dev'));
     };
 
-
+    routes() {
+        this.app.use('/api/products', productRoutes);
+    };
 
     async listen() {
         try {
