@@ -1,29 +1,26 @@
-import { DataTypes } from 'sequelize';
-import { sequelize } from '../db/configDB.js';
-import Stock from './stock.js';
+import { DataTypes } from "sequelize";
+import { sequelize } from "../db/configDB.js";
+import Product from "./product.js";
 
-const Product = sequelize.define('product', {
+
+const Stock = sequelize.define('stock', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
-    }, 
+    },
     name: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    price: {
-        type: DataTypes.FLOAT,
+    quantity: {
+        type: DataTypes.INTEGER,
         allowNull: false
     },
-    description: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    stockID: {
+    productID: {
         type: DataTypes.INTEGER,
         references: {
-            model: Stock,
+            model: Product,
             key: 'id'
         },
         onDelete: 'CASCADE' // Elimina el stock si el producto relacionado se elimina
@@ -32,4 +29,5 @@ const Product = sequelize.define('product', {
     timestamps: false
 });
 
-export default Product;
+
+export default Stock;
