@@ -1,4 +1,5 @@
 import userServices from "../services/userServices.js";
+import authService from "../services/authServices.js"
 import { CatchError } from "../utils/catchError.js";
 
 
@@ -54,6 +55,16 @@ class UserController {
         return CatchError(error, res);
       };
     };
+
+    async login(req, res) {
+      try {
+          const { email, password } = req.body;
+          const { user, token } = await authService.login(email, password);
+          res.status(200).json({ token });
+      } catch (error) {
+          return CatchError(error, res);
+      };
+  };
   
   };
 

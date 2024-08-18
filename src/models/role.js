@@ -8,18 +8,11 @@ const Role = sequelize.define('Role', {
         primaryKey: true,
         autoIncrement: true
     },
-    client: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-      },
-      trader: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-      },
-      admin: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-      },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+  },
 }, {
     tableName: 'roles',
     timestamps: false
