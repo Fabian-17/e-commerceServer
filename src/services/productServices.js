@@ -4,11 +4,15 @@ class ProductServices {
     constructor() {};
 
     async findAll() {
-        return await Product.findAll();
+        return await Product.findAll({
+            include: ['stock']
+        });
     };
 
     async create(product) {
-        return await Product.create(product);
+        return await Product.create(product, {
+            include: ['stock']
+        });
     };
 
     async update(id, product) {
@@ -28,7 +32,9 @@ class ProductServices {
     };
     
     async findById(id) {
-        return await Product.findByPk(id);
+        return await Product.findByPk(id, {
+            include: ['stock']
+        });
     };
 };
 
