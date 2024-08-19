@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../db/configDB.js';
-import Stock from './stock.js';
+
 
 const Product = sequelize.define('product', {
     id: {
@@ -19,14 +19,6 @@ const Product = sequelize.define('product', {
     description: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    stockID: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Stock,
-            key: 'id'
-        },
-        onDelete: 'CASCADE' // Elimina el stock si el producto relacionado se elimina
     },
 }, {
     timestamps: false
