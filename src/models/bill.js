@@ -3,7 +3,7 @@ import { sequelize } from "../db/configDB.js";
 import User from "./user.js";
 import Product from "./product.js";
 
-const Factura = sequelize.define('factura', {
+const Bill = sequelize.define('bill', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -48,4 +48,4 @@ const Factura = sequelize.define('factura', {
 });
 
 
-export default Factura;
+export default Bill;
