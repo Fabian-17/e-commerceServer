@@ -4,6 +4,8 @@ import Product from "./product.js";
 import Stock from "./stock.js";
 import Cart from "./cart.js";
 import CartItem from "./cartItem.js";
+import Bill from "./bill.js";
+import BillItem from "./billItem.js";
 
 
 const defineRelations = async () => {
@@ -56,6 +58,36 @@ CartItem.belongsTo(Cart, {
 
 // Un item en el carrito pertenece a un producto
 CartItem.belongsTo(Product, {
+    foreignKey: 'productId',
+    as: 'product'
+});
+
+// Relación uno a muchos entre User y Bill (Un usuario puede tener muchas facturas)
+User.hasMany(Bill, {
+    foreignKey: 'userId',
+    as: 'bills'
+});
+Bill.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user'
+});
+
+// Relación uno a muchos entre Bill y BillItem (Una factura puede tener muchos productos)
+Bill.hasMany(BillItem, {
+    foreignKey: 'billId',
+    as: 'items'
+});
+BillItem.belongsTo(Bill, {
+    foreignKey: 'billId',
+    as: 'bill'
+});
+
+// Relación uno a muchos entre Product y BillItem (Un producto puede aparecer en muchos BillItems)
+Product.hasMany(BillItem, {
+    foreignKey: 'productId',
+    as: 'billItems'
+});
+BillItem.belongsTo(Product, {
     foreignKey: 'productId',
     as: 'product'
 });

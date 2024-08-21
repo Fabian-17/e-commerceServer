@@ -1,7 +1,5 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from "../db/configDB.js";
-import User from "./user.js";
-import Product from "./product.js";
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../db/configDB.js';
 
 const Bill = sequelize.define('bill', {
     id: {
@@ -19,7 +17,7 @@ const Bill = sequelize.define('bill', {
     },
     descuento: {
         type: DataTypes.FLOAT,
-        allowNull: false
+        defaultValue: 0
     },
     metodoPago: {
         type: DataTypes.STRING,
@@ -27,25 +25,10 @@ const Bill = sequelize.define('bill', {
     },
     fecha: {
         type: DataTypes.DATE,
-        allowNull: false
-    },
-    userID: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: User,
-            key: 'id'
-        },
-    },
-    productID: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Product,
-            key: 'id'
-        },
+        defaultValue: DataTypes.NOW
     },
 }, {
     timestamps: false
 });
-
 
 export default Bill;
